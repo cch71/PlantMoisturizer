@@ -10,7 +10,7 @@ This is in its early stages and not meant to be pretty yet.  It is functional.
 
 ## Future Plans
 
-I did get a 4 piece kit with water pumps and so plan on turning this into a full blown
-desktop irrigation system.  I also am planning on adding sensors for reading Preassure,
-Temp, and a battery backed clock.  So pretty standard for a project like this but written
+I did get a 4 piece kit with water pumps.  At some point, I plan on turning this into a full-blown
+desktop irrigation system.  I also am planning on adding sensors for reading Pressure,
+Temp, and a battery-backed clock.  It is pretty standard for a project like this and it is written
 in Rust.
