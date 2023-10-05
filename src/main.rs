@@ -100,7 +100,7 @@ async fn run_display(i2c: I2C<'static, I2C0>) {
         use core::fmt::Write;
         use heapless::String;
         let mut data = String::<64>::new();
-        let _ = write!(data, "Raw Val {:04}", val);
+        let _ = core::writeln!(&mut data, "Raw Val {:04}", val);
 
         Text::with_alignment(data.as_str(), center_pt, text_style, Alignment::Center)
             .draw(&mut display)
@@ -202,7 +202,9 @@ async fn soil_probe_reader(mut adc_pin: Gpio4<Analog>, mut analog: hal::analog::
         // let pin_value_mv = pin_value as u32 * atten.ref_mv() as u32 / 4096;
         // println!("ADC reading = {pin_value} ({pin_value_mv} mV)");
 
-        let pct = 100 - ((pin_value as f32 / 4096.0) * 100.0) as u32;
+        // This will get the percentage of the voltage and then invert it for
+        //  display purposes.
+        let pct = (100.0 - ((pin_value as f32 / 4096.0) * 100.0)) as u32;
 
         MSG_Q.send((pin_value, pct)).await;
         Timer::after(Duration::from_millis(1000)).await;
